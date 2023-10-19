@@ -24,6 +24,6 @@ func InitCfg() (Config, error) {
 		fmt.Println("Error while Loading Cache")
 		return cfg, err
 	}
-	go nats.StartListening(cfg.DB)
+	go nats.StartListening(cfg.DB, cfg.Cache)
 	return cfg, err
 }

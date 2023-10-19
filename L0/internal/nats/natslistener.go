@@ -3,6 +3,7 @@ package nats
 import (
 	"Wildber/internal/database"
 	"Wildber/internal/models"
+	"Wildber/internal/transport"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -10,7 +11,7 @@ import (
 	"github.com/nats-io/stan.go"
 )
 
-func StartListening(DB *database.Database) {
+func StartListening(DB *database.Database, Cache *transport.Cache) {
 	clusterID := "test-cluster"
 	clientID := "your-consumer"
 	subject := "channel"
@@ -36,7 +37,8 @@ func StartListening(DB *database.Database) {
 			return
 		}
 		DB.Insert(model.Order_uid, string(msg.Data))
-		fmt.Println("Record is successfully writed in Data Base")
+		Cache.Set(model.Order_uid, model)
+		fmt.Println("Record is successfully writed in Data Base and Cache")
 	}
 
 	_, err = sc.Subscribe(subject, messageHandler)
