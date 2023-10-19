@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h1>Order information</h1>
+    <h2>Main information:</h2>
+    <p>Order ID: {{.Order_uid}}</p>
+    <p>Track_number: {{.Track_number}}</p>
+    <p>Entry: {{.Entry}}</p>
+    <p>Locale: {{.Locale}}</p>
+    <p>Customer_id: {{.Customer_id}}</p>
+    <p>Delivery_service: {{.Delivery_service}}</p>
+    <p>Shardkey: {{.Shardkey}}</p>
+    <p>Sm_id: {{.Sm_id}}</p>
+    <p>Date_created: {{.Date_created}}</p>
+    <p>Oof_shard: {{.Oof_shard}}</p>
+
+    <h2>Delivery information:</h2>
+    <p>Name: {{.Delivery.Name}}</p>
+    <p>Phone: {{.Delivery.Phone}}</p>
+    <p>Zip: {{.Delivery.Zip}}</p>
+    <p>City: {{.Delivery.City}}</p>
+    <p>Address: {{.Delivery.Address}}</p>
+    <p>Region: {{.Delivery.Region}}</p>
+    <p>Email: {{.Delivery.Email}}</p>
+
+    <h2>Payment information:</h2>
+    <p>Transaction: {{.Payment.Transaction}}</p>
+    <p>Request_id: {{.Payment.Request_id}}</p>
+    <p>Currency: {{.Payment.Currency}}</p>
+    <p>Provider: {{.Payment.Provider}}</p>
+    <p>Amount: {{.Payment.Amount}}</p>
+    <p>Payment_dt: {{.Payment.Payment_dt}}</p>
+    <p>Bank: {{.Payment.Bank}}</p>
+    <p>Delivery_cost: {{.Payment.Delivery_cost}}</p>
+    <p>Goods_total: {{.Payment.Goods_total}}</p>
+    <p>Custom_fee: {{.Payment.Custom_fee}}</p>
+
+    <h2>Items:</h2>
+    {{range .Items}}
+    <h3>{{.Name}}</h3>
+    <p>Chrt_id: {{.Chrt_id}}</p>
+    <p>Track_number: {{.Track_number}}</p>
+    <p>Price: {{.Price}}</p>
+    <p>Rid: {{.Rid}}</p>
+    <p>Name: {{.Name}}</p>
+    <p>Sale: {{.Sale}}</p>
+    <p>Size: {{.Size}}</p>
+    <p>Total_Price: {{.Total_Price}}</p>
+    <p>Nm_id: {{.Nm_id}}</p>
+    <p>Brand: {{.Brand}}</p>
+    <p>Status: {{.Status}}</p>
+    {{end}}
+
+</body>
+</html>
