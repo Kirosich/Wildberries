@@ -22,7 +22,7 @@ func main() {
 	}
 	defer sc.Close()
 
-	filePath := []string{"./model.json", "./model2.json", "./modelerr.json"}
+	filePath := []string{"./model.json", "./model2.json", "./model3.json", "./modelerr.json"}
 	for _, file := range filePath {
 		fileData, err := ioutil.ReadFile(file)
 		if err != nil {

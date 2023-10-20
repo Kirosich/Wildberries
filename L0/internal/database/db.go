@@ -25,20 +25,21 @@ func Init() *Database {
 	return Database
 }
 
+const queryInsert = `INSERT INTO json_table (uid, information) VALUES ($1, $2)`
+
 func (db Database) Insert(uid string, info string) {
-	query := `INSERT INTO json_table (uid, information) VALUES ($1, $2)`
-	_, err := db.DB.Exec(query, uid, info)
+	_, err := db.DB.Exec(queryInsert, uid, info)
 	if err != nil {
 		log.Fatalf("Insert error: %v", err)
 	}
 	fmt.Println("Data Inserted successfully")
 }
 
+const queryIsExist = `SELECT COUNT(*) FROM json_table WHERE uid = $1`
+
 func (db Database) IsExist(uid string) bool {
 	var count int
-
-	query := `SELECT COUNT(*) FROM json_table WHERE uid = $1`
-	row := db.DB.QueryRow(query, uid)
+	row := db.DB.QueryRow(queryIsExist, uid)
 	if err := row.Scan(&count); err != nil {
 		log.Fatalf("Row scan error: %v", err)
 	}
@@ -48,12 +49,13 @@ func (db Database) IsExist(uid string) bool {
 	return false
 }
 
+const querySelectAll = `SELECT "uid", "information" FROM json_table`
+
 func (db Database) SelectAll() ([]string, []models.Order, error) {
-	query := `SELECT "uid", "information" FROM json_table`
 	var uid []string
 	var information []models.Order
 
-	rows, err := db.DB.Query(query)
+	rows, err := db.DB.Query(querySelectAll)
 	if err != nil {
 		return nil, nil, err
 	}
