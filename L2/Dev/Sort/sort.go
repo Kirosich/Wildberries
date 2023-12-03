@@ -15,13 +15,20 @@ func main() {
 
 	// Переворот матрицы так, чтобы было удобно
 
-	matrixColumns := len(dataMatrix[0]) - 1
+	var matrixColumn int
+	for i := 0; i < len(dataMatrix); i++ {
+		if matrixColumn < len(dataMatrix[i]) {
+			matrixColumn = len(dataMatrix[i])
+		}
+	}
 	matrixLines := len(dataMatrix) - 1
 
-	for j := 0; j < matrixColumns+1; j++ {
+	for j := 0; j < matrixColumn; j++ {
 		Slice := []string{} // Каждую итерацию создаём новый слайс для нового столбца
 		for i := 0; i < matrixLines+1; i++ {
-			Slice = append(Slice, dataMatrix[i][j]) // Добавляем старые значение столбца в отдельный массив
+			if j < len(dataMatrix[i]) && dataMatrix[i][j] != "-" {
+				Slice = append(Slice, dataMatrix[i][j]) // Добавляем старые значение столбца в отдельный массив
+			}
 		}
 		Matrix = append(Matrix, Slice)
 	}
