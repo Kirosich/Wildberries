@@ -31,6 +31,26 @@ func Find(flags *Flags.Flags) {
 		res = Flags.FlagC(lines, flags)
 	}
 
+	if *flags.Count {
+		IsFlags = true
+		res = Flags.FlagCount(lines, flags)
+	}
+
+	if *flags.N {
+		IsFlags = true
+		res = Flags.FlagN(lines, flags)
+	}
+
+	if *flags.F {
+		IsFlags = true
+		res = Flags.FlagF(lines, flags)
+	}
+
+	if *flags.V {
+		IsFlags = true
+		res = Flags.FlagV(lines, flags)
+	}
+
 	if !IsFlags {
 		for i := 0; i < len(lines); i++ {
 			for j := 0; j < len(lines[i]); j++ {
@@ -38,11 +58,17 @@ func Find(flags *Flags.Flags) {
 				helpers.HandleError(err)
 				if matched {
 					res = append(res, lines[i])
+					break
 				}
 			}
 		}
 	}
 
+	PrintLines(res)
+
+}
+
+func PrintLines(res [][]string) {
 	for i := 0; i < len(res); i++ {
 		if i == len(res)-1 && strings.Join(res[i], "") == "--" {
 			break

@@ -12,7 +12,7 @@ type Flags struct {
 	B          string // -B | Before | Вернуть n строк перед targetLine
 	C          string // -C | Context | Вернуть +-n строк между targetLine
 	Count      *bool  // -c | Count | Вернуть кол-во строк с этими словами
-	I          *bool  // -i | Ignore Case | Игнорировать регистр при поиске
+	I          *bool  // -i | Ignore Case | Игнорировать регистр при поиске - можно искать с слайса tolowcase, а append делать через обычный массив, но индекс tolowcase
 	V          *bool  // -v | Invert | Вместо совпадения - исключать
 	F          *bool  // -F | Fixed | Вместо регулярного выражения, конкретная строка
 	N          *bool  // -n | Line num | Вывести номер строки перед самой строкой
